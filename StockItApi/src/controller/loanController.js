@@ -68,14 +68,22 @@ exports.updateDeviceLoan = async (req, res) => {
 
         if(loan.loanType === 'computer') {
             const computer = await Computer.findByPk(loan.equipmentId);
-            await computer.update({ status: 'available' });
-            //update loan
-            await loan.update({ returnDate });
+            if(computer) {
+                await computer.update({ status: 'available' });
+            }
+        } 
+        else if (loan.loanType === 'device') {
+            const device = await Device.findByPk(loan.equipmentId);
+            if (device) {
+                await device.update({ status: 'available' });
+            }
         }
+        await loan.update({ returnDate });
+
         return res.status(200).json({ message: 'Loan returned successfully', loan });
 
     } catch (error) {
-        consloe.error('Error returning loan:', error);
+        console.error('Error returning loan:', error);
         return res.status(500).json({ message: 'Internal Server Error' });
     }
 }
