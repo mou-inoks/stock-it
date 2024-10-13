@@ -1,5 +1,6 @@
 const Computer = require('../models/computerDao');
 const { ComputerStatusEnum } = require('../enum/enums');
+const computerService = require('../services/computerService');
 
 exports.createComputer = async (req, res) => {
     try {
@@ -9,8 +10,8 @@ exports.createComputer = async (req, res) => {
             return res.status(400).json({ message: 'Name and status are required' });
         }
 
-        //verif status valide 
         const validStatus = Object.values(ComputerStatusEnum);
+
         if (!validStatus.includes(status)) {
             return res.status(400).json({ message: 'Invalid status' });
         }
@@ -22,3 +23,12 @@ exports.createComputer = async (req, res) => {
         return res.status(500).json({ message: 'Internal Server Error' });
     }
 }
+
+exports.getAllComputers = async (req, res) => {
+    try {
+        const computers = await computerService.getAllComputers();
+        return res.status(200).json(computers);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
