@@ -32,3 +32,18 @@ exports.getAllComputers = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 };
+
+exports.getComputerById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const computer = await computerService.getById(id);
+
+        if (!computer) {
+            return res.status(404).json({ message: 'Computer not found' });
+        }
+
+        return res.status(200).json(computer);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
