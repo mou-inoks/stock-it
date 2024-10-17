@@ -2,48 +2,64 @@ const Computer = require('../models/computerDao');
 const { ComputerStatusEnum } = require('../enum/enums');
 const computerService = require('../services/computerService');
 
-exports.createComputer = async (req, res) => {
+
+export const getAllComputers = async (req, res) => {
     try {
-        const { name, status } = req.body;
-
-        if (!name || !status) {
-            return res.status(400).json({ message: 'Name and status are required' });
-        }
-
-        const validStatus = Object.values(ComputerStatusEnum);
-
-        if (!validStatus.includes(status)) {
-            return res.status(400).json({ message: 'Invalid status' });
-        }
-
-        const computer = await Computer.create({ name, status });
-        return res.status(201).json({ message: 'Computer created successfully', computer });
-    } catch (error) {
-        console.error('Error creating computer:', error);
-        return res.status(500).json({ message: 'Internal Server Error' });
-    }
-}
-
-exports.getAllComputers = async (req, res) => {
-    try {
-        const computers = await computerService.getAllComputers();
-        return res.status(200).json(computers);
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
+        const computers = await deviceService.getAllComputers();
+        res.json(computers);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
 };
 
-exports.getComputerById = async (req, res) => {
+export const getDeviceById = async (req, res) => {
     try {
         const { id } = req.params;
-        const computer = await computerService.getById(id);
+        const computer = await deviceService.getDeviceById(id);
 
         if (!computer) {
-            return res.status(404).json({ message: 'Computer not found' });
+            return res.status(404).json({ message: 'Device not found' });
         }
 
-        return res.status(200).json(computer);
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
+        res.json(computer);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
-}
+};
+
+export const deleteDeviceById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        await deviceService.deleteDeviceById(id);
+        res.status(204).end();
+
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+export const editDeviceById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { body } = req;
+
+        const computer = await deviceService.editDeviceById(id, body);
+
+        res.json(computer);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+export const createDevice = async (req, res) => {
+    try {
+        const { body } = req;
+
+        const computer = await deviceService.createDevice(body);
+
+        res.status(201).json(computer);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
