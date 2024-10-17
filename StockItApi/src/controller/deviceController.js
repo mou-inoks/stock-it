@@ -1,4 +1,4 @@
-import deviceService from '../services/deviceService';
+import * as deviceService from '../services/deviceService.js';
 
 export const getAllDevices = async (req, res) => {
     try {

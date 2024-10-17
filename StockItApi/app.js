@@ -1,12 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const productRoutes = require('./src/routes/computerRoutes');
-const config = require('./src/config/index');
+import express from 'express';
+import computerRoutes from './src/routes/computerRoutes.js';
 
 const app = express();
 
 // Middleware
 app.use(express.json());
-app.use('/api/products', productRoutes);
+app.use('/api/computer', computerRoutes);
 
-module.exports = app;
+export default app;

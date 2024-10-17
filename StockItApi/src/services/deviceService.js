@@ -1,4 +1,4 @@
-import Device from '../models/deviceDao';
+import Device from '../models/deviceDao.js';
 
 export const getAllDevices = async () => {
     try {

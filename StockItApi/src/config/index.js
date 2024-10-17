@@ -1,16 +1,17 @@
-//configuration de l'application
-require('dotenv').config();
-const sequelize = require('./src/config/database');
+import dotenv from 'dotenv';
+dotenv.config();
+import config from './config.js'; 
+import sequelize from './database.js';
 
 module.exports = {
-    DB_HOST: process.env.DB_HOST || 'localhost',
-    DB_USER: process.env.DB_USER || 'root',
-    DB_PASSWORD: process.env.DB_PASSWORD || '',
-    DB_NAME: process.env.DB_NAME || 'stockit',
-    DB_DIALECT: 'mysql'
+    DB_HOST: config.host,
+    DB_USER: config.username,
+    DB_PASSWORD: config.password,
+    DB_NAME: config.database,
+    DB_DIALECT: config.dialect
 };
 
-// Synchroniser la base de données
+
 sequelize.sync({ force: false })  // force: true recrée les tables à chaque démarrage
     .then(() => {
         console.log('Database & tables created!');

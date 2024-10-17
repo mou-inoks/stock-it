@@ -8,4 +8,4 @@ const LoanTypeEnum = Object.freeze({
     DEVICE: 2,
 });
 
-module.exports = { ComputerStatusEnum, LoanTypeEnum };
+export default { ComputerStatusEnum, LoanTypeEnum };

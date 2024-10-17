@@ -1,4 +1,4 @@
-import Computer from '../models/computerDao';
+import Computer from '../models/computerDao.js';
 
 export const getAllComputers = async () => {
     try {

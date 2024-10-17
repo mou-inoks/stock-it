@@ -1,8 +1,8 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-const User = require('./User');
-const Computer = require('./Computer');
-const Device = require('./Device');
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database.js';
+import User from './userDao.js'
+import Computer from './computerDao.js'
+import Device from './deviceDao.js'
 
 const Loan = sequelize.define('Loan', {
     id: {
@@ -38,4 +38,4 @@ Loan.belongsTo(Computer, { foreignKey: 'equipmentId', constraints: false });
 Device.hasMany(Loan, { foreignKey: 'equipmentId', constraints: false, scope: { loanType: 'device' } });
 Loan.belongsTo(Device, { foreignKey: 'equipmentId', constraints: false });
 
-module.exports = Loan;
+export default Loan;

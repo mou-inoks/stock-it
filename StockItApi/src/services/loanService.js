@@ -1,4 +1,4 @@
-const Loan = require('../models/loanDao');
+import Loan from '../models/loanDao.js'
 
 export const getAllLoans = async () => {
     try {
