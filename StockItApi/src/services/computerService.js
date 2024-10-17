@@ -2,7 +2,7 @@ import Computer from '../models/computerDao';
 
 export const getAllComputers = async () => {
     try {
-        const computers = await Device.find();  
+        const computers = await Computer.find();  
         return computers;
     } catch (error) {
         console.error('Error fetching computers:', error);
@@ -10,9 +10,9 @@ export const getAllComputers = async () => {
     }
 };
 
-export const getDeviceById = async (id) => {
+export const getComputerById = async (id) => {
     try {
-        const computer = await Device.findById(id); 
+        const computer = await Computer.findById(id); 
         return computer;
     } catch (error) {
         console.error(`Error fetching computer with id ${id}:`, error);
@@ -20,9 +20,9 @@ export const getDeviceById = async (id) => {
     }
 };
 
-export const deleteDeviceById = async (id) => {
+export const deleteComputerById = async (id) => {
     try {
-        const computer = await Device.findByIdAndDelete(id); 
+        const computer = await Computer.findByIdAndDelete(id); 
         return computer;
     } catch (error) {
         console.error(`Error deleting computer with id ${id}:`, error);
@@ -30,9 +30,9 @@ export const deleteDeviceById = async (id) => {
     }
 };
 
-export const editDeviceById = async (id, deviceDto) => {
+export const editComputerById = async (id, computerDto) => {
     try {
-        const computer = await Device.findByIdAndUpdate(id, deviceDto, { new: true });
+        const computer = await Computer.findByIdAndUpdate(id, computerDto, { new: true });
         return computer;
     } catch (error) {
         console.error(`Error updating computer with id ${id}:`, error);
@@ -40,9 +40,9 @@ export const editDeviceById = async (id, deviceDto) => {
     }
 };
 
-export const createDevice = async (deviceDto) => {
+export const createComputer = async (computerDto) => {
     try {
-        const computer = new Device(deviceDto); 
+        const computer = new Computer(computerDto); 
         await computer.save();
         return computer;
     } catch (error) {
