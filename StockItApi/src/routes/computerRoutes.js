@@ -1,8 +1,17 @@
 import express from 'express';
-import deviceController from '../controller/deviceController.js';
+import { 
+    getAllDevices, 
+    getDeviceById, 
+    deleteDeviceById, 
+    editDeviceById 
+} from '../controller/deviceController.js';
+
 const router = express.Router();
 
-router.get('/', deviceController.getAllProducts);
-// Ajoute d'autres routes ici...
+// Define your routes here
+router.get('/', getAllDevices);
+router.get('/:id', getDeviceById);
+router.delete('/:id', deleteDeviceById);
+router.put('/:id', editDeviceById);
 
-module.exports = router;
+export default router;

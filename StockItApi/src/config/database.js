@@ -1,11 +1,11 @@
 import { Sequelize } from 'sequelize';
-import config from './index.js';
+import { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_DIALECT } from './index.js';
 
-console.log('Database Configuration:', config);
+console.log('Database Configuration:', { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_DIALECT });
 
-const sequelize = new Sequelize(config.DB_NAME, config.DB_USER, config.DB_PASSWORD, {
-    host: config.DB_HOST,
-    dialect: config.DB_DIALECT
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+    host: DB_HOST,
+    dialect: DB_DIALECT
 });
 
 export default sequelize;

@@ -37,26 +37,12 @@ export const deleteDeviceById = async (req, res) => {
 };
 
 export const editDeviceById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { body } = req;
-
-        const device = await deviceService.editDeviceById(id, body);
-
-        res.json(device);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+    // Finish this method
 };
 
-export const createDevice = async (req, res) => {
-    try {
-        const { body } = req;
-
-        const device = await deviceService.createDevice(body);
-
-        res.status(201).json(device);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+export default {
+    getAllDevices,
+    getDeviceById,
+    deleteDeviceById,
+    editDeviceById
 };
