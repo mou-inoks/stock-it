@@ -1,23 +1,26 @@
 const config = {
     development: {
         username: 'root',
-        password: null,
-        database: 'stockit_dev',
-        host: '127.0.0.1',
+        password: 'salimout1880',
+        database: 'stockit',
+        host: 'localhost',
+        port:'3306',
         dialect: 'mysql'
     },
     test: {
         username: 'root',
-        password: null,
-        database: 'stockit_test',
-        host: '127.0.0.1',
+        password: 'salimout1880',
+        database: 'stockit',
+        host: 'localhost',
+        port:'3306',
         dialect: 'mysql'
     },
     production: {
         username: 'root',
-        password: null,
+        password: 'salimout1880',
         database: 'stockit',
-        host: '127.0.0.1',
+        host: 'localhost',
+        port:'3306',
         dialect: 'mysql'
     }
 };
