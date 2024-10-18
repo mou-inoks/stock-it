@@ -8,5 +8,6 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use('/api/computer', computerRoutes);
+app.use('/api/device', deviceRoutes)
 
 export default app;

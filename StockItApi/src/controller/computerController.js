@@ -9,13 +9,13 @@ export const getAllComputers = async (req, res) => {
     }
 };
 
-export const getDeviceById = async (req, res) => {
+export const getComputerById = async (req, res) => {
     try {
         const { id } = req.params;
-        const computer = await computerService.getDeviceById(id);
+        const computer = await computerService.getComputerById(id);
 
         if (!computer) {
-            return res.status(404).json({ message: 'Device not found' });
+            return res.status(404).json({ message: 'Computer not found' });
         }
 
         res.json(computer);
@@ -24,11 +24,11 @@ export const getDeviceById = async (req, res) => {
     }
 };
 
-export const deleteDeviceById = async (req, res) => {
+export const deleteComputerById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        await computerService.deleteDeviceById(id);
+        await computerService.deleteComputerById(id);
         res.status(204).end();
 
     } catch (err) {
@@ -36,12 +36,12 @@ export const deleteDeviceById = async (req, res) => {
     }
 };
 
-export const editDeviceById = async (req, res) => {
+export const editComputerById = async (req, res) => {
     try {
         const { id } = req.params;
         const { body } = req;
 
-        const computer = await computerService.editDeviceById(id, body);
+        const computer = await computerService.editComputerById(id, body);
 
         res.json(computer);
     } catch (err) {
@@ -49,11 +49,11 @@ export const editDeviceById = async (req, res) => {
     }
 };
 
-export const createDevice = async (req, res) => {
+export const createComputer = async (req, res) => {
     try {
         const { body } = req;
 
-        const computer = await computerService.createDevice(body);
+        const computer = await computerService.createComputer(body);
 
         res.status(201).json(computer);
     } catch (err) {
