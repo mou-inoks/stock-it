@@ -1,6 +1,6 @@
 import Loan from '../models/loanDao.js'
 
-export const getAllLoans = async () => {
+export const getAllLoansQuery = async () => {
     try {
         const loans = await Loan.findAll();  // Sequelize method to fetch all loans
         return loans;
@@ -10,7 +10,7 @@ export const getAllLoans = async () => {
     }
 };
 
-export const getLoanById = async (id) => {
+export const getLoanByIdQuery = async (id) => {
     try {
         const loan = await Loan.findByPk(id);  // Sequelize method to fetch a loan by primary key
         return loan;
@@ -20,7 +20,7 @@ export const getLoanById = async (id) => {
     }
 };
 
-export const createLoan = async (loanDto) => {
+export const createLoanCommand = async (loanDto) => {
     try {
         const loan = await Loan.create(loanDto);  // Sequelize method to create a loan
         return loan;
@@ -30,7 +30,7 @@ export const createLoan = async (loanDto) => {
     }
 };
 
-export const editLoanById = async (id, loanDto) => {
+export const editLoanByIdCommand = async (id, loanDto) => {
     try {
         const loan = await Loan.update(loanDto, { where: { id }, returning: true, plain: true });  // Sequelize method to update a loan
         return loan[1];  // The updated instance is the second element of the array returned by update
@@ -40,7 +40,7 @@ export const editLoanById = async (id, loanDto) => {
     }
 };
 
-export const deleteLoanById = async (id) => {
+export const deleteLoanByIdCommand = async (id) => {
     try {
         const loan = await Loan.destroy({ where: { id } });  // Sequelize method to delete a loan
         return loan;

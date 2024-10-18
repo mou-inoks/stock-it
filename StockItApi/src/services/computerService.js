@@ -1,6 +1,6 @@
 import Computer from '../models/computerDao.js';
 
-export const getAllComputers = async () => {
+export const getAllComputersQuery = async () => {
     try {
         const computers = await Computer.find();  
         return computers;
@@ -10,7 +10,7 @@ export const getAllComputers = async () => {
     }
 };
 
-export const getComputerById = async (id) => {
+export const getComputerByIdQuery = async (id) => {
     try {
         const computer = await Computer.findById(id); 
         return computer;
@@ -20,7 +20,7 @@ export const getComputerById = async (id) => {
     }
 };
 
-export const deleteComputerById = async (id) => {
+export const deleteComputerByIdCommand = async (id) => {
     try {
         const computer = await Computer.findByIdAndDelete(id); 
         return computer;
@@ -30,7 +30,7 @@ export const deleteComputerById = async (id) => {
     }
 };
 
-export const editComputerById = async (id, computerDto) => {
+export const editComputerByIdCommand = async (id, computerDto) => {
     try {
         const computer = await Computer.findByIdAndUpdate(id, computerDto, { new: true });
         return computer;
@@ -40,7 +40,7 @@ export const editComputerById = async (id, computerDto) => {
     }
 };
 
-export const createComputer = async (computerDto) => {
+export const createComputerCommand = async (computerDto) => {
     try {
         const computer = new Computer(computerDto); 
         await computer.save();

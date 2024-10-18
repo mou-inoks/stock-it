@@ -1,6 +1,6 @@
 import User from '../models/userDao.js'
 
-export const getAllUsers = async () => {
+export const getAllUsersQuery = async () => {
     try {
         const users = await User.findAll();  // Sequelize method to fetch all users
         return users;
@@ -10,7 +10,7 @@ export const getAllUsers = async () => {
     }
 };
 
-export const getUserById = async (id) => {
+export const getUserByIdQuery = async (id) => {
     try {
         const user = await User.findByPk(id);  // Sequelize method to fetch a user by primary key
         return user;
@@ -20,7 +20,7 @@ export const getUserById = async (id) => {
     }
 };
 
-export const createUser = async (userDto) => {
+export const createUserCommand = async (userDto) => {
     try {
         const user = await User.create(userDto);  // Sequelize method to create a user
         return user;
@@ -30,7 +30,7 @@ export const createUser = async (userDto) => {
     }
 };
 
-export const editUserById = async (id, userDto) => {
+export const editUserByIdCommand = async (id, userDto) => {
     try {
         const user = await User.update(userDto, { where: { id }, returning: true, plain: true });  // Sequelize method to update a user
         return user[1];  // The updated instance is the second element of the array returned by update
@@ -40,7 +40,7 @@ export const editUserById = async (id, userDto) => {
     }
 };
 
-export const deleteUserById = async (id) => {
+export const deleteUserByIdCommand = async (id) => {
     try {
         const user = await User.destroy({ where: { id } });  // Sequelize method to delete a user
         return user;

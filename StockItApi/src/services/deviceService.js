@@ -1,6 +1,6 @@
 import Device from '../models/deviceDao.js';
 
-export const getAllDevices = async () => {
+export const getAllDevicesQuery = async () => {
     try {
         const devices = await Device.find();  
         return devices;
@@ -10,7 +10,7 @@ export const getAllDevices = async () => {
     }
 };
 
-export const getDeviceById = async (id) => {
+export const getDeviceByIdQuery = async (id) => {
     try {
         const device = await Device.findById(id); 
         return device;
@@ -20,7 +20,7 @@ export const getDeviceById = async (id) => {
     }
 };
 
-export const deleteDeviceById = async (id) => {
+export const deleteDeviceByIdCommand = async (id) => {
     try {
         const device = await Device.findByIdAndDelete(id); 
         return device;
@@ -30,7 +30,7 @@ export const deleteDeviceById = async (id) => {
     }
 };
 
-export const editDeviceById = async (id, deviceDto) => {
+export const editDeviceByIdCommand = async (id, deviceDto) => {
     try {
         const device = await Device.findByIdAndUpdate(id, deviceDto, { new: true });
         return device;
@@ -40,7 +40,7 @@ export const editDeviceById = async (id, deviceDto) => {
     }
 };
 
-export const createDevice = async (deviceDto) => {
+export const createDeviceCommand = async (deviceDto) => {
     try {
         const device = new Device(deviceDto); 
         await device.save();
